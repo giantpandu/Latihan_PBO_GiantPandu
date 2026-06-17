@@ -23,7 +23,7 @@ class TiketVelvet extends Tiket {
         float $hargaDasarTiket,
         string $bantalSelimutPack,
         string $layananButler
-    ): void {
+    ) {
         parent::__construct($id_tiket, $nama_film, $jadwal_tayang, $jumlah_kursi, $hargaDasarTiket);
         $this->bantalSelimutPack = $bantalSelimutPack;
         $this->layananButler = $layananButler;

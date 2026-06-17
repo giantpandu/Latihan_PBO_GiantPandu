@@ -23,7 +23,7 @@ class TiketRegular extends Tiket {
         float $hargaDasarTiket,
         string $tipeAudio,
         string $lokasiBaris
-    ): void {
+    ) {
         parent::__construct($id_tiket, $nama_film, $jadwal_tayang, $jumlah_kursi, $hargaDasarTiket);
         $this->tipeAudio = $tipeAudio;
         $this->lokasiBaris = $lokasiBaris;

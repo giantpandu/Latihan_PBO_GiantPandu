@@ -40,12 +40,13 @@ class TiketRegular extends Tiket {
     }
 
     /**
-     * Menampilkan informasi fasilitas tiket regular (placeholder)
+     * Menampilkan informasi fasilitas tiket regular
+     * Outputs the specific facilities for regular tickets
      * 
      * @return void
      */
     public function tampilkanInfoFasilitas(): void {
-        // Placeholder implementation
+        echo "<strong>Fasilitas:</strong> Tipe Audio: {$this->tipeAudio} | Lokasi Baris: {$this->lokasiBaris}";
     }
 
     /**

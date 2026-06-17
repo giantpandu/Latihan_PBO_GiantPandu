@@ -41,12 +41,13 @@ class TiketIMAX extends Tiket {
     }
 
     /**
-     * Menampilkan informasi fasilitas tiket IMAX (placeholder)
+     * Menampilkan informasi fasilitas tiket IMAX
+     * Outputs the specific facilities for IMAX tickets
      * 
      * @return void
      */
     public function tampilkanInfoFasilitas(): void {
-        // Placeholder implementation
+        echo "<strong>Fasilitas:</strong> Kacamata 3D ID: {$this->kacamata3dId} | Efek Gerak: {$this->efekGerakFitur}";
     }
 
     /**

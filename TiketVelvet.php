@@ -41,12 +41,13 @@ class TiketVelvet extends Tiket {
     }
 
     /**
-     * Menampilkan informasi fasilitas tiket velvet (placeholder)
+     * Menampilkan informasi fasilitas tiket velvet
+     * Outputs the specific facilities for velvet tickets
      * 
      * @return void
      */
     public function tampilkanInfoFasilitas(): void {
-        // Placeholder implementation
+        echo "<strong>Fasilitas:</strong> Paket Bantal & Selimut: {$this->bantalSelimutPack} | Layanan Butler: {$this->layananButler}";
     }
 
     /**

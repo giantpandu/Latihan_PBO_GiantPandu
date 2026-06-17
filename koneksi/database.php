@@ -4,7 +4,7 @@ class Database {
     private string $host = 'localhost';
     private string $username = 'root';
     private string $password = '';
-    private string $dbName = 'DB_LATIHAN_PBO_TRPL1B_GiantPandu';
+    private string $dbName = 'db_latihan_pbo_trpl1b_giant_pandu_titisan_budiansyah';
     private ?PDO $pdo = null;
 
     /**

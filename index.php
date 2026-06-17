@@ -20,8 +20,8 @@ require_once __DIR__ . '/TiketRegular.php';
 require_once __DIR__ . '/TiketIMAX.php';
 require_once __DIR__ . '/TiketVelvet.php';
 
-// Initialize database connection (update 'GiantPandu' with your name if different)
-$db = new Database('DB_LATIHAN_PBO_TRPL1B_GiantPandu');
+// Initialize database connection
+$db = new Database('db_latihan_pbo_trpl1b_giant_pandu_titisan_budiansyah');
 $pdo = $db->getConnection();
 
 // Arrays to group tickets by studio type

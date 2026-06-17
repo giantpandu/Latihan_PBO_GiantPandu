@@ -30,12 +30,13 @@ class TiketRegular extends Tiket {
     }
 
     /**
-     * Menghitung total harga tiket regular (placeholder)
+     * Menghitung total harga tiket regular
+     * Formula: Total = jumlah_kursi * hargaDasarTiket
      * 
      * @return float Total harga tiket
      */
     public function hitungTotalHarga(): float {
-        return 0.0;
+        return (float) ($this->jumlah_kursi * $this->hargaDasarTiket);
     }
 
     /**

@@ -30,12 +30,14 @@ class TiketIMAX extends Tiket {
     }
 
     /**
-     * Menghitung total harga tiket IMAX (placeholder)
+     * Menghitung total harga tiket IMAX
+     * Formula: Total = (jumlah_kursi * hargaDasarTiket) + 35000
+     * Adds a flat fee of Rp35,000 for IMAX projection and audio technology
      * 
      * @return float Total harga tiket
      */
     public function hitungTotalHarga(): float {
-        return 0.0;
+        return (float) (($this->jumlah_kursi * $this->hargaDasarTiket) + 35000);
     }
 
     /**

@@ -30,12 +30,14 @@ class TiketVelvet extends Tiket {
     }
 
     /**
-     * Menghitung total harga tiket velvet (placeholder)
+     * Menghitung total harga tiket velvet
+     * Formula: Total = (jumlah_kursi * hargaDasarTiket) * 1.50
+     * Adds a 50% premium class surcharge on top of the base price
      * 
      * @return float Total harga tiket
      */
     public function hitungTotalHarga(): float {
-        return 0.0;
+        return (float) (($this->jumlah_kursi * $this->hargaDasarTiket) * 1.50);
     }
 
     /**

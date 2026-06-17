@@ -22,7 +22,7 @@ abstract class Tiket {
         string $jadwal_tayang,
         int $jumlah_kursi,
         float $hargaDasarTiket
-    ): void {
+    ) {
         $this->id_tiket = $id_tiket;
         $this->nama_film = $nama_film;
         $this->jadwal_tayang = $jadwal_tayang;

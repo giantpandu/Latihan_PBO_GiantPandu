@@ -12,7 +12,7 @@ class Database {
      * 
      * @param string|null $customDbName Nama database custom (opsional)
      */
-    public function __construct(?string $customDbName = null): void {
+    public function __construct(?string $customDbName = null) {
         if ($customDbName !== null) {
             $this->dbName = $customDbName;
         }

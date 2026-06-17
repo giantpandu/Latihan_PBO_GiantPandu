@@ -30,6 +30,34 @@ class TiketVelvet extends Tiket {
     }
 
     /**
+     * Static Factory Method: Instantiate from database row with validation
+     * Defensively handles missing or null values
+     * 
+     * @param array $data Database row data (associative array)
+     * @return self New TiketVelvet instance
+     * @throws InvalidArgumentException If required fields are missing
+     */
+    public static function fromDatabaseRow(array $data): self {
+        // Validate required fields
+        $required = ['id_tiket', 'nama_film', 'jadwal_tayang', 'jumlah_kursi', 'harga_dasar_tiket', 'bantal_selimut_pack', 'layanan_butler'];
+        foreach ($required as $field) {
+            if (!isset($data[$field]) || $data[$field] === null || $data[$field] === '') {
+                throw new InvalidArgumentException("Field '{$field}' is required for TiketVelvet");
+            }
+        }
+
+        return new self(
+            (int) $data['id_tiket'],
+            (string) $data['nama_film'],
+            (string) $data['jadwal_tayang'],
+            (int) $data['jumlah_kursi'],
+            (float) $data['harga_dasar_tiket'],
+            (string) $data['bantal_selimut_pack'],
+            (string) $data['layanan_butler']
+        );
+    }
+
+    /**
      * Menghitung total harga tiket velvet
      * Formula: Total = (jumlah_kursi * hargaDasarTiket) * 1.50
      * Adds a 50% premium class surcharge on top of the base price

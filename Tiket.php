@@ -48,46 +48,51 @@ abstract class Tiket {
 
     /**
      * Getter untuk id_tiket
+     * Public access for Presentation Layer
      * 
      * @return int ID tiket
      */
-    protected function getIdTiket(): int {
+    public function getIdTiket(): int {
         return $this->id_tiket;
     }
 
     /**
      * Getter untuk nama_film
+     * Public access for Presentation Layer
      * 
      * @return string Nama film
      */
-    protected function getNamaFilm(): string {
+    public function getNamaFilm(): string {
         return $this->nama_film;
     }
 
     /**
      * Getter untuk jadwal_tayang
+     * Public access for Presentation Layer
      * 
      * @return string Jadwal tayang
      */
-    protected function getJadwalTayang(): string {
+    public function getJadwalTayang(): string {
         return $this->jadwal_tayang;
     }
 
     /**
      * Getter untuk jumlah_kursi
+     * Public access for Presentation Layer
      * 
      * @return int Jumlah kursi
      */
-    protected function getJumlahKursi(): int {
+    public function getJumlahKursi(): int {
         return $this->jumlah_kursi;
     }
 
     /**
      * Getter untuk hargaDasarTiket
+     * Public access for Presentation Layer
      * 
      * @return float Harga dasar tiket
      */
-    protected function getHargaDasarTiket(): float {
+    public function getHargaDasarTiket(): float {
         return $this->hargaDasarTiket;
     }
 }

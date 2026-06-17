@@ -30,6 +30,34 @@ class TiketIMAX extends Tiket {
     }
 
     /**
+     * Static Factory Method: Instantiate from database row with validation
+     * Defensively handles missing or null values
+     * 
+     * @param array $data Database row data (associative array)
+     * @return self New TiketIMAX instance
+     * @throws InvalidArgumentException If required fields are missing
+     */
+    public static function fromDatabaseRow(array $data): self {
+        // Validate required fields
+        $required = ['id_tiket', 'nama_film', 'jadwal_tayang', 'jumlah_kursi', 'harga_dasar_tiket', 'kacamata_3d_id', 'efek_gerak_fitur'];
+        foreach ($required as $field) {
+            if (!isset($data[$field]) || $data[$field] === null || $data[$field] === '') {
+                throw new InvalidArgumentException("Field '{$field}' is required for TiketIMAX");
+            }
+        }
+
+        return new self(
+            (int) $data['id_tiket'],
+            (string) $data['nama_film'],
+            (string) $data['jadwal_tayang'],
+            (int) $data['jumlah_kursi'],
+            (float) $data['harga_dasar_tiket'],
+            (string) $data['kacamata_3d_id'],
+            (string) $data['efek_gerak_fitur']
+        );
+    }
+
+    /**
      * Menghitung total harga tiket IMAX
      * Formula: Total = (jumlah_kursi * hargaDasarTiket) + 35000
      * Adds a flat fee of Rp35,000 for IMAX projection and audio technology

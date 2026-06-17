@@ -1,21 +1,22 @@
 <?php
 
 class Database {
-    private string $host = 'localhost';
-    private string $username = 'root';
-    private string $password = '';
-    private string $dbName = 'db_latihan_pbo_trpl1b_giant_pandu_titisan_budiansyah';
+    private string $host;
+    private string $username;
+    private string $password;
+    private string $dbName;
     private ?PDO $pdo = null;
 
     /**
      * Constructor untuk menginisialisasi koneksi database
      * 
-     * @param string|null $customDbName Nama database custom (opsional)
+     * @param array $config Database configuration array
      */
-    public function __construct(?string $customDbName = null) {
-        if ($customDbName !== null) {
-            $this->dbName = $customDbName;
-        }
+    public function __construct(array $config) {
+        $this->host = $config['host'] ?? 'localhost';
+        $this->username = $config['username'] ?? 'root';
+        $this->password = $config['password'] ?? '';
+        $this->dbName = $config['name'] ?? 'db_latihan_pbo_trpl1b_giant_pandu_titisan_budiansyah';
         
         $this->connect();
     }

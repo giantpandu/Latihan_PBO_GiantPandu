@@ -1,0 +1,31 @@
+# Gitignore File
+# Prevent sensitive files from being committed to version control
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependency Management
+/vendor/
+/node_modules/
+
+# Cache
+*.cache
+.cache/
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+tmp/
+temp/

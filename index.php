@@ -11,6 +11,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Load configuration
+$config = require_once __DIR__ . '/config.php';
+
 // Include database connection
 require_once __DIR__ . '/koneksi/database.php';
 
@@ -20,8 +23,8 @@ require_once __DIR__ . '/TiketRegular.php';
 require_once __DIR__ . '/TiketIMAX.php';
 require_once __DIR__ . '/TiketVelvet.php';
 
-// Initialize database connection
-$db = new Database('db_latihan_pbo_trpl1b_giant_pandu_titisan_budiansyah');
+// Initialize database connection using configuration
+$db = new Database($config['database']);
 $pdo = $db->getConnection();
 
 // Arrays to group tickets by studio type
@@ -36,43 +39,25 @@ try {
     $stmt->execute();
     $data = $stmt->fetchAll();
 
-    // Factory pattern: Instantiate appropriate object based on jenis_studio
+    // Factory pattern: Instantiate appropriate object based on jenis_studio using Static Factory Method
     foreach ($data as $row) {
         $jenis_studio = strtolower($row['jenis_studio'] ?? '');
 
-        if ($jenis_studio === 'regular') {
-            $tiket = new TiketRegular(
-                (int) $row['id_tiket'],
-                (string) $row['nama_film'],
-                (string) $row['jadwal_tayang'],
-                (int) $row['jumlah_kursi'],
-                (float) $row['hargaDasarTiket'],
-                (string) $row['tipeAudio'],
-                (string) $row['lokasiBaris']
-            );
-            $tiketRegular[] = $tiket;
-        } elseif ($jenis_studio === 'imax') {
-            $tiket = new TiketIMAX(
-                (int) $row['id_tiket'],
-                (string) $row['nama_film'],
-                (string) $row['jadwal_tayang'],
-                (int) $row['jumlah_kursi'],
-                (float) $row['hargaDasarTiket'],
-                (string) $row['kacamata3dId'],
-                (string) $row['efekGerakFitur']
-            );
-            $tiketImax[] = $tiket;
-        } elseif ($jenis_studio === 'velvet') {
-            $tiket = new TiketVelvet(
-                (int) $row['id_tiket'],
-                (string) $row['nama_film'],
-                (string) $row['jadwal_tayang'],
-                (int) $row['jumlah_kursi'],
-                (float) $row['hargaDasarTiket'],
-                (string) $row['bantalSelimutPack'],
-                (string) $row['layananButler']
-            );
-            $tiketVelvet[] = $tiket;
+        try {
+            if ($jenis_studio === 'regular') {
+                $tiket = TiketRegular::fromDatabaseRow($row);
+                $tiketRegular[] = $tiket;
+            } elseif ($jenis_studio === 'imax') {
+                $tiket = TiketIMAX::fromDatabaseRow($row);
+                $tiketImax[] = $tiket;
+            } elseif ($jenis_studio === 'velvet') {
+                $tiket = TiketVelvet::fromDatabaseRow($row);
+                $tiketVelvet[] = $tiket;
+            }
+        } catch (InvalidArgumentException $e) {
+            // Log error for debugging, skip this row gracefully
+            error_log("Skipping ticket due to validation error: " . $e->getMessage());
+            continue;
         }
     }
 } catch (PDOException $e) {
